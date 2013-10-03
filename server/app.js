@@ -11,22 +11,22 @@ var mongoose = require('mongoose');
 
 
 // start mongoose
-mongoose.connect('mongodb://localhost/sit');
+mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 
-	/* test schema */
-    var testSchema = new mongoose.Schema({
-        test: String
+    var taskSchema = new mongoose.Schema({
+        title: String,
+        finished: Boolean
     });
 
-    var Test = mongoose.model( 'test', testSchema );
+    var Task = mongoose.model('task', taskSchema );
 
     /* set Baucis */
     baucis.rest({
-        singular: 'test'
+        singular: 'task'
     });
 
 	var app = express();
