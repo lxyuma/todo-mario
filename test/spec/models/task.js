@@ -8,16 +8,18 @@
 		],
 		function( Task ) {
 
-			describe('Task Model', function () {
+      describe('Task Model', function () {
+        var task;
+        before(function(){
+          task = new Task({title: "it is testing"});
+        });
 
-				it('should be an instance of Task Model', function () {
-					var task = new Task();
-					expect( task ).to.be.an.instanceof( Task );
-				});
+        it('should save and fetch', function () {
+          task.save();
+          var saved_task = new Task({id: task.id}).fetch()
+          expect( saved_task.title).to.equal(task.title)
+        });
 
-				it('should have more test written', function(){
-					expect( false ).to.be.ok;
-				});
 			});
 
 		});
