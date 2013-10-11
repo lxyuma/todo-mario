@@ -1,7 +1,8 @@
 define([
-	'backbone'
+	'backbone',
+  'communicator'
 ],
-function(Backbone){
+function(Backbone, Communicator){
     'use strict';
 
 	return Backbone.View.extend({
@@ -14,7 +15,8 @@ function(Backbone){
 		},
     postTask: function(event){
       if(event.keyCode == 13){
-        console.log("ENTERED!");
+        Communicator.command.execute('createTask', this.$el.val())
+        this.$el.val('')
       }
     }
 	});
