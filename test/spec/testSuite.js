@@ -5,6 +5,7 @@ define(function() {
 	return {
 		specs: ['spec/exampleTest.js',
 		'spec/models/task.js',
+		'spec/views/collection/tasks.js',
 		'spec/views/item/task.js',
 		'spec/views/new_task.js'
 		]
