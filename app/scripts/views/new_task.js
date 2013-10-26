@@ -6,7 +6,7 @@ define([
 function(Backbone, Communicator, Task){
     'use strict';
 
-	return Backbone.Marionette.View.extend({
+	return Backbone.View.extend({
     events: {
       "keypress": "postTask"
     },

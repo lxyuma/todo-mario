@@ -9,7 +9,9 @@ function( Backbone, TaskTmpl  ) {
 	return Backbone.Marionette.ItemView.extend({
 
 		initialize: function() {
-			console.log("initialize a Task ItemView");
+      _.bindAll(this, "changeFinished");
+      this.changeFinished();
+      this.model.on('sync', this.changeFinished);
 		},
 		
     	template: TaskTmpl,
@@ -18,7 +20,25 @@ function( Backbone, TaskTmpl  ) {
     	ui: {},
 
 		/* Ui events hash */
-		events: {},
+		events: {
+      "click" : "onClickTask"
+    },
+
+    onClickTask: function(event) {
+      if(this.model.get('finished')){
+        this.model.save({"finished": false})
+      } else {
+        this.model.save({"finished" : true});
+      }
+    },
+
+    changeFinished: function() {
+      if(this.model.get('finished')){
+        this.$el.attr('style', 'text-decoration: none;')
+      } else {
+        this.$el.attr('style', 'text-decoration: line-through;')
+      }
+    },
 
 		/* on render callback */
 		onRender: function() {}
