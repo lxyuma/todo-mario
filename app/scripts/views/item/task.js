@@ -34,9 +34,9 @@ function( Backbone, TaskTmpl  ) {
 
     changeFinished: function() {
       if(this.model.get('finished')){
-        this.$el.attr('style', 'text-decoration: none;')
-      } else {
         this.$el.attr('style', 'text-decoration: line-through;')
+      } else {
+        this.$el.attr('style', 'text-decoration: none;')
       }
     },
 

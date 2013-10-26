@@ -6,6 +6,7 @@ define(function() {
 		specs: ['spec/collections/tasks.js',
 		'spec/exampleTest.js',
 		'spec/models/task.js',
+		'spec/routers/tasks.js',
 		'spec/views/collection/tasks.js',
 		'spec/views/item/task.js',
 		'spec/views/new_task.js'
