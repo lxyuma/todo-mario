@@ -4,6 +4,7 @@ define(function() {
 	/* return an array of specs to be run */
 	return {
 		specs: ['spec/collections/tasks.js',
+		'spec/controllers/tasks.js',
 		'spec/exampleTest.js',
 		'spec/models/task.js',
 		'spec/routers/tasks.js',

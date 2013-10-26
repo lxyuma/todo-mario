@@ -4,20 +4,11 @@ define([
 function(Backbone){
     'use strict';
 
-	return Backbone.Router.extend({
-    initialize: function(options) {
-      this.collection = options.collection;
-    },
+	return Backbone.Marionette.AppRouter.extend({
 		/* Backbone routes hash */
-		routes: {
+		appRoutes: {
       "all"      : "all",
       "finished" : "finished"
     },
-    all : function(){
-      this.collection.fetch();
-    },
-    finished : function(){
-      this.collection.fetch({data:{conditions:'{"finished":true}'}});
-    }
 	});
 });

@@ -5,10 +5,11 @@ define([
   'views/collection/tasks',
   'models/task',
   'collections/tasks',
-  'routers/tasks'
+  'routers/tasks',
+  'controllers/tasks'
 ],
 
-function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksCollection, TasksRouter ) {
+function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksCollection, TasksRouter, TasksController ) {
     'use strict';
 
 	var App = new Backbone.Marionette.Application();
@@ -29,7 +30,7 @@ function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksC
   });
 
   App.addInitializer( function () {
-    new TasksRouter({collection: App.collection});
+    new TasksRouter({controller: new TasksController({collection: App.collection })});
     Backbone.history.start();
   });
 
