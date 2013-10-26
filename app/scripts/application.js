@@ -2,30 +2,34 @@ define([
 	'backbone',
 	'communicator',
   'views/new_task',
-  'views/item/task',
-  'models/task'
+  'views/collection/tasks',
+  'models/task',
+  'collections/tasks'
 ],
 
-function( Backbone, Communicator, NewTaskView, TaskView, Task ) {
+function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksCollection ) {
     'use strict';
 
 	var App = new Backbone.Marionette.Application();
 
 	/* Add application regions here */
 	App.addRegions({
-    newTask: "#new-todo",
-    tasks  : "#tasks"
+    newTodo : "#new-todo",
+    tasks   : "#tasks"
   });
 
 	/* Add initializers here */
+  App.addInitializer(function() {
+    this.collection = new TasksCollection();
+    this.collection.fetch();
+    new NewTaskView({el: App.newTodo.el, collection: this.collection});
+    App.tasks.show(new TasksCollectionView({collection: this.collection}));
+  });
+
 	App.addInitializer( function () {
 		Communicator.mediator.trigger("APP:START");
-    App.newTask.show(new NewTaskView());
 	});
 
-  Communicator.command.setHandler('createTask', function(title){
-    App.tasks.show(new TaskView({model: new Task({title: title})}));
-  });
 	return App;
 });
 

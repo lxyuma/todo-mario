@@ -13,7 +13,6 @@ function( Backbone, TaskTmpl  ) {
 		},
 		
     	template: TaskTmpl,
-        
 
     	/* ui selector cache */
     	ui: {},

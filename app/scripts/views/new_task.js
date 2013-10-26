@@ -1,22 +1,21 @@
 define([
 	'backbone',
-  'communicator'
+  'communicator',
+  'models/task'
 ],
-function(Backbone, Communicator){
+function(Backbone, Communicator, Task){
     'use strict';
 
-	return Backbone.View.extend({
-    el: "#new-todo",
+	return Backbone.Marionette.View.extend({
     events: {
       "keypress": "postTask"
     },
-		initialize: function() {
-			console.log("initialize a NewTask View");
-		},
     postTask: function(event){
       if(event.keyCode == 13){
-        Communicator.command.execute('createTask', this.$el.val())
-        this.$el.val('')
+        var task = new Task({title: this.$el.val()});
+        task.save();
+        this.collection.add(task);
+        this.$el.val('');
       }
     }
 	});

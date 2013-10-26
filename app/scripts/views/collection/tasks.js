@@ -8,12 +8,7 @@ function( Backbone, Task  ) {
 	/* Return a ItemView class definition */
 	return Backbone.Marionette.CollectionView.extend({
 
-		initialize: function() {
-			console.log("initialize a Tasks CollectionView");
-		},
-		
     	itemView: Task,
-    	
 
     	/* ui selector cache */
     	ui: {},
