@@ -1,6 +1,6 @@
 define([
-	'backbone',
-	'communicator',
+  'backbone',
+  'communicator',
   'views/new_task',
   'views/collection/tasks',
   'models/task',
@@ -12,15 +12,15 @@ define([
 function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksCollection, TasksRouter, TasksController ) {
     'use strict';
 
-	var App = new Backbone.Marionette.Application();
+  var App = new Backbone.Marionette.Application();
 
-	/* Add application regions here */
-	App.addRegions({
+  /* Add application regions here */
+  App.addRegions({
     newTodo : "#new-task",
     tasks   : "#tasks"
   });
 
-	/* Add initializers here */
+  /* Add initializers here */
   App.addInitializer(function() {
     this.collection = new TasksCollection();
     this.collection.fetch();
@@ -34,11 +34,11 @@ function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksC
     Backbone.history.start();
   });
 
-	App.addInitializer( function () {
-		Communicator.mediator.trigger("APP:START");
-	});
+  App.addInitializer( function () {
+    Communicator.mediator.trigger("APP:START");
+  });
 
-	return App;
+  return App;
 });
 
 

@@ -1,26 +1,22 @@
 define([
-	'backbone',
-	'hbs!tmpl/item/task_tmpl'
+  'backbone',
+  'hbs!tmpl/item/task_tmpl'
 ],
 function( Backbone, TaskTmpl  ) {
     'use strict';
 
-	/* Return a ItemView class definition */
-	return Backbone.Marionette.ItemView.extend({
+  /* Return a ItemView class definition */
+  return Backbone.Marionette.ItemView.extend({
 
-		initialize: function() {
-      _.bindAll(this, "changeFinished");
-      this.changeFinished();
-      this.model.on('sync', this.changeFinished);
-		},
-		
-    	template: TaskTmpl,
+    initialize: function() {
+      _.bindAll(this, "changeFinishedStyle");
+      this.changeFinishedStyle();
+      this.model.on('sync', this.changeFinishedStyle);
+    },
+    template: TaskTmpl,
 
-    	/* ui selector cache */
-    	ui: {},
-
-		/* Ui events hash */
-		events: {
+    /* Ui events hash */
+    events: {
       "click" : "onClickTask"
     },
 
@@ -32,16 +28,12 @@ function( Backbone, TaskTmpl  ) {
       }
     },
 
-    changeFinished: function() {
+    changeFinishedStyle: function() {
       if(this.model.get('finished')){
         this.$el.attr('style', 'text-decoration: line-through;')
       } else {
         this.$el.attr('style', 'text-decoration: none;')
       }
     },
-
-		/* on render callback */
-		onRender: function() {}
-	});
-
+  });
 });

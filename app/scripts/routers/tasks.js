@@ -1,14 +1,14 @@
 define([
-	'backbone'
+  'backbone'
 ],
 function(Backbone){
     'use strict';
 
-	return Backbone.Marionette.AppRouter.extend({
-		/* Backbone routes hash */
-		appRoutes: {
+  return Backbone.Marionette.AppRouter.extend({
+    /* Backbone routes hash */
+    appRoutes: {
       "all"      : "all",
       "finished" : "finished"
     },
-	});
+  });
 });

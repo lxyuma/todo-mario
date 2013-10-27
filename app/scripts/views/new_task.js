@@ -1,12 +1,12 @@
 define([
-	'backbone',
+  'backbone',
   'communicator',
   'models/task'
 ],
 function(Backbone, Communicator, Task){
     'use strict';
 
-	return Backbone.View.extend({
+  return Backbone.View.extend({
     events: {
       "keypress": "postTask"
     },
@@ -18,5 +18,5 @@ function(Backbone, Communicator, Task){
         this.$el.val('');
       }
     }
-	});
+  });
 });
