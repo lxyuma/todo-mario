@@ -7,6 +7,7 @@ function( Backbone, TaskTmpl  ) {
 
   /* Return a ItemView class definition */
   return Backbone.Marionette.ItemView.extend({
+    tagName: "li",
 
     initialize: function() {
       this.changeFinishedStyle();

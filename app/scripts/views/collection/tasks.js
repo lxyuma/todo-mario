@@ -8,5 +8,6 @@ function( Backbone, Task  ) {
   /* Return a ItemView class definition */
   return Backbone.Marionette.CollectionView.extend({
       itemView: Task,
+      tagName: "ul"
   });
 });
