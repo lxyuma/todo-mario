@@ -9,9 +9,8 @@ function( Backbone, TaskTmpl  ) {
   return Backbone.Marionette.ItemView.extend({
 
     initialize: function() {
-      _.bindAll(this, "changeFinishedStyle");
       this.changeFinishedStyle();
-      this.model.on('sync', this.changeFinishedStyle);
+      this.model.on('sync', this.changeFinishedStyle, this);
     },
     template: TaskTmpl,
 
