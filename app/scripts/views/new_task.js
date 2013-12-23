@@ -7,15 +7,22 @@ function(Backbone, Communicator, Task){
     'use strict';
 
   return Backbone.View.extend({
+    initialize: function(){
+      this.model = new Task();
+      this.stickit();
+    },
+    bindings: {
+      "#new-task": "title"
+    },
     events: {
       "keypress": "postTask"
     },
     postTask: function(event){
       if(event.keyCode == 13){
-        var task = new Task({title: this.$el.val()});
-        task.save();
-        Communicator.command.execute("todo:add-new-task", task);
-        this.$el.val('');
+        this.model.save();
+        Communicator.command.execute("todo:add-new-task", this.model);
+        this.model = new Task();
+        this.stickit();
       }
     }
   });

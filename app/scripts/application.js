@@ -16,7 +16,7 @@ function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksC
 
   /* Add application regions here */
   App.addRegions({
-    newTodo : "#new-task",
+    newTodo : "#task-form-region",
     tasks   : "#tasks"
   });
 
