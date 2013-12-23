@@ -29,6 +29,19 @@
               expect(this.model.destroy.called).to.be.true;
             });
           });
+          describe('when task is not finished', function(){
+            beforeEach(function(){
+              sinon.stub(this.model, "save");
+            });
+            afterEach(function(){
+              sinon.restore(this.model, "save");
+            });
+            it('should destroy', function(){
+              this.view.onClick();
+              expect(this.model.save.called).to.be.true;
+              expect(this.model.save.calledWith({"finished":true})).to.be.true;
+            });
+          });
         });
       });
 		});
