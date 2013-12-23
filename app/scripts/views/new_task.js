@@ -6,24 +6,39 @@ define([
 function(Backbone, Communicator, Task){
     'use strict';
 
-  return Backbone.View.extend({
+  return Backbone.Marionette.View.extend({
     initialize: function(){
+      this.bindUIElements();
       this.model = new Task();
       this.stickit();
     },
+    ui: {
+      msg: "#msg"
+    },
     bindings: {
-      "#new-task": "title"
+      "#task-title": "title"
     },
     events: {
       "keypress": "onKeypress"
     },
     onKeypress: function(event){
       if(event.keyCode == 13){
-        this.model.save();
-        Communicator.command.execute("todo:add-new-task", this.model);
+        this.model.save({}, {
+          success: _.bind(function(task){
+            this.showMessage("SUCCESS!");
+            Communicator.command.execute("todo:add-new-task", task);
+          } , this),
+          error: _.bind(function(task){ this.showMessage("ERROR!"); }, this)
+        });
         this.model = new Task();
         this.stickit();
       }
+    },
+    showMessage: function(message) {
+      this.ui.msg.html(message).show();
+      setTimeout(_.bind(function(){
+        this.ui.msg.fadeOut();
+      }, this), 1000);
     }
   });
 });

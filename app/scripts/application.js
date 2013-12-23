@@ -16,8 +16,8 @@ function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksC
 
   /* Add application regions here */
   App.addRegions({
-    newTodo : "#task-form-region",
-    tasks   : "#tasks"
+    taskForm : "#task-form-region",
+    tasksResults : "#tasks-results-region"
   });
 
   /* Add initializers here */
@@ -25,8 +25,8 @@ function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksC
     this.collection = new TasksCollection();
     this.collection.fetch();
 
-    App.newTodo.attachView(new NewTaskView({el: App.newTodo.el}));
-    App.tasks.show(new TasksCollectionView({collection: this.collection}));
+    App.taskForm.attachView(new NewTaskView({el: App.taskForm.el}));
+    App.tasksResults.show(new TasksCollectionView({collection: this.collection}));
   });
 
   App.addInitializer(function(){
