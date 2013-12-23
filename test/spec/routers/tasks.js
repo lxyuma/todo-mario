@@ -4,20 +4,18 @@
 	var root = this;
 
 	root.define([
-		'routers/tasks'
+		'routers/tasks',
+    'controllers/tasks'
 		],
-		function( Tasks ) {
+		function( Tasks, TasksController ) {
 
 			describe('Tasks Router', function () {
 
 				it('should be an instance of Tasks Router', function () {
-					var tasks = new Tasks();
+					var tasks = new Tasks({controller: new TasksController});
 					expect( tasks ).to.be.an.instanceof( Tasks );
 				});
 
-				it('should have more test written', function(){
-					expect( false ).to.be.ok;
-				});
 			});
 
 		});

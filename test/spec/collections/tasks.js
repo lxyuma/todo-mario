@@ -15,9 +15,6 @@
 					expect( tasks ).to.be.an.instanceof( Tasks );
 				});
 
-				it('should have more test written', function(){
-					expect( false ).to.be.ok;
-				});
 			});
 
 		});

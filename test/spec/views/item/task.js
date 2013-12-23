@@ -43,6 +43,15 @@
             });
           });
         });
+        describe('#changeFinishedStyle', function(){
+          beforeEach(function(){
+            this.model.set({'finished': true});
+          });
+          it('should change css', function(){
+            this.view.changeFinishedStyle();
+            expect(this.view.$el.attr('style')).match(/line/);
+          });
+        });
       });
 		});
 
