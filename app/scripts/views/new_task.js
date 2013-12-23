@@ -14,7 +14,7 @@ function(Backbone, Communicator, Task){
       if(event.keyCode == 13){
         var task = new Task({title: this.$el.val()});
         task.save();
-        this.collection.add(task);
+        Communicator.command.execute("todo:add-new-task", task);
         this.$el.val('');
       }
     }

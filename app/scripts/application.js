@@ -25,8 +25,14 @@ function( Backbone, Communicator, NewTaskView, TasksCollectionView, Task, TasksC
     this.collection = new TasksCollection();
     this.collection.fetch();
 
-    App.newTodo.attachView(new NewTaskView({el: App.newTodo.el, collection: this.collection}));
+    App.newTodo.attachView(new NewTaskView({el: App.newTodo.el}));
     App.tasks.show(new TasksCollectionView({collection: this.collection}));
+  });
+
+  App.addInitializer(function(){
+    Communicator.command.setHandler("todo:add-new-task", _.bind(function(task){
+      this.collection.add(task);
+    }, this));
   });
 
   App.addInitializer( function () {
