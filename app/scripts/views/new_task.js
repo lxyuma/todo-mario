@@ -15,9 +15,9 @@ function(Backbone, Communicator, Task){
       "#new-task": "title"
     },
     events: {
-      "keypress": "postTask"
+      "keypress": "onKeypress"
     },
-    postTask: function(event){
+    onKeypress: function(event){
       if(event.keyCode == 13){
         this.model.save();
         Communicator.command.execute("todo:add-new-task", this.model);

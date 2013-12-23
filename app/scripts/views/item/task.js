@@ -17,10 +17,10 @@ function( Backbone, TaskTmpl  ) {
 
     /* Ui events hash */
     events: {
-      "click" : "onClickTask"
+      "click" : "onClick"
     },
 
-    onClickTask: function(event) {
+    onClick: function(event) {
       if(this.model.get('finished')){
         this.model.destroy();
       } else {
