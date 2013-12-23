@@ -11,7 +11,7 @@ function( Backbone, TaskTmpl  ) {
 
     initialize: function() {
       this.changeFinishedStyle();
-      this.model.on('sync', this.changeFinishedStyle, this);
+      this.listenTo(this.model, 'sync', this.changeFinishedStyle);
     },
     template: TaskTmpl,
 
@@ -22,7 +22,7 @@ function( Backbone, TaskTmpl  ) {
 
     onClickTask: function(event) {
       if(this.model.get('finished')){
-        this.model.save({"finished": false})
+        this.model.destroy();
       } else {
         this.model.save({"finished" : true});
       }
@@ -31,9 +31,7 @@ function( Backbone, TaskTmpl  ) {
     changeFinishedStyle: function() {
       if(this.model.get('finished')){
         this.$el.attr('style', 'text-decoration: line-through;')
-      } else {
-        this.$el.attr('style', 'text-decoration: none;')
       }
-    },
+    }
   });
 });
