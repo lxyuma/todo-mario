@@ -4,22 +4,33 @@
 	var root = this;
 
 	root.define([
-		'views/item/task'
+		'views/item/task',
+    'models/task'
 		],
-		function( Task ) {
+		function( TaskView, TaskModel ) {
 
 			describe('Task Itemview', function () {
 
-				it('should be an instance of Task Itemview', function () {
-					var task = new Task();
-					expect( task ).to.be.an.instanceof( Task );
-				});
-
-				it('should have more test written', function(){
-					expect( false ).to.be.ok;
-				});
-			});
-
+        beforeEach(function(){
+          this.model = new TaskModel();
+          this.view = new TaskView({model: this.model});
+        });
+        describe('#onClick', function(){
+          describe('when task is finished', function(){
+            beforeEach(function(){
+              this.model.set({"finished": true});
+              sinon.stub(this.model, "destroy");
+            });
+            afterEach(function(){
+              sinon.restore(this.model, "destroy");
+            });
+            it('should destroy', function(){
+              this.view.onClick();
+              expect(this.model.destroy.called).to.be.true;
+            });
+          });
+        });
+      });
 		});
 
 }).call( this );
